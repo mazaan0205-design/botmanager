@@ -266,45 +266,7 @@
                     </a>
                 </div>
             </div>
-            <!-- Bento Grid Stats Section -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-xl">
-                <div class="bg-white p-lg rounded-xl border border-slate-200 flex flex-col gap-2 shadow-sm">
-                    <span class="text-slate-500 font-label-sm uppercase tracking-wider">Total Active
-                        Bots</span>
-                    <div class="flex items-center justify-between">
-                        <span class="text-h2 font-h2 text-slate-900">12</span>
-                        <span class="px-2 py-1 bg-green-50 text-green-700 text-xs font-bold rounded">+2
-                            this month</span>
-                    </div>
-                </div>
-                <div class="bg-white p-lg rounded-xl border border-slate-200 flex flex-col gap-2 shadow-sm">
-                    <span class="text-slate-500 font-label-sm uppercase tracking-wider">Total
-                        Interactions</span>
-                    <div class="flex items-center justify-between">
-                        <span class="text-h2 font-h2 text-slate-900">48.2k</span>
-                        <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-bold rounded">Top
-                            5%</span>
-                    </div>
-                </div>
-                <div class="bg-white p-lg rounded-xl border border-slate-200 flex flex-col gap-2 shadow-sm">
-                    <span class="text-slate-500 font-label-sm uppercase tracking-wider">Avg.
-                        Response Time</span>
-                    <div class="flex items-center justify-between">
-                        <span class="text-h2 font-h2 text-slate-900">1.2s</span>
-                        <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-bold rounded">-0.4s</span>
-                    </div>
-                </div>
-                <div class="bg-white p-lg rounded-xl border border-slate-200 flex flex-col gap-2 shadow-sm">
-                    <span class="text-slate-500 font-label-sm uppercase tracking-wider">Success
-                        Rate</span>
-                    <div class="flex items-center justify-between">
-                        <span class="text-h2 font-h2 text-slate-900">94.8%</span>
-                        <div class="w-16 bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                            <div class="bg-indigo-600 h-full w-[94.8%]"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <!-- Chatbot Cards Grid -->
             <div class="border border-3 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-gutter">
                 <!-- Card 1: Online -->
@@ -339,23 +301,25 @@
                             primary tier-1 support queries, order tracking, and general FAQ
                             responses.</p>
                         <div class="flex items-center justify-between pt-md border-t border-slate-50">
-                            <div class="flex flex-col">
-                                <span class="text-slate-400 font-label-sm">Last
-                                    Updated</span>
-                                <span class="text-slate-700 font-label-md">2 hours
-                                    ago</span>
-                            </div>
+
                             <div class="flex gap-2">
-                                <button
+                                <a href="{{ route('preview', ['id' => $bot->id]) }}"
                                     class="px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg font-label-sm hover:bg-slate-200 transition-colors flex items-center gap-1">
                                     <span class="material-symbols-outlined text-base">play_arrow</span>
                                     Test
-                                </button>
-                                <button
+                                </a>
+
+                                <a href="{{ route('bot-config', ['id' => $bot->id]) }}"
                                     class="px-3 py-1.5 border border-slate-200 text-slate-700 rounded-lg font-label-sm hover:bg-slate-50 transition-colors flex items-center gap-1">
                                     <span class="material-symbols-outlined text-base">edit</span>
                                     Edit
-                                </button>
+                                </a>
+                                <a href="{{ route('knowledge', ['id' => $bot->id]) }}"
+                                    class="px-3 py-1.5 border border-slate-200 text-slate-700 rounded-lg font-label-sm hover:bg-slate-50 transition-colors flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-base">book</span>
+                                    KB
+                                </a>
+
                             </div>
                         </div>
                     </div>
@@ -611,11 +575,11 @@
 
             // This injects your exact requested structure with the dynamic botId
             textarea.value = `<script>
-                          window.BotManagerConfig = {
-                            botId: "${botId}",
-                            backendUrl: "http://127.0.0.1:8001"
-                          };
-                        <script src="http://127.0.0.1:8001/static/widget.js" async>
+                                              window.BotManagerConfig = {
+                                                botId: "${botId}",
+                                                backendUrl: "http://127.0.0.1:8001"
+                                              };
+                                            <script src="http://127.0.0.1:8001/static/widget.js" async>
     </script>`;
 
     modal.classList.remove('hidden');
