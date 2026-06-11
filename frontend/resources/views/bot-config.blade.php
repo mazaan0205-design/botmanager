@@ -197,6 +197,37 @@
         </nav>
     </aside>
 
+    <header
+        class="fixed top-0 left-0 right-0 h-16 bg-white border-b border-slate-200 flex justify-between items-center px-4 sm:px-6 z-30 lg:ml-[280px] transition-all duration-300">
+        <div class="flex items-center gap-2 sm:gap-4 min-w-0">
+            <button id="mobile-menu-btn"
+                class="p-2 -ml-2 mr-1 text-slate-500 hover:bg-slate-50 rounded-lg lg:hidden transition-colors shrink-0">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+            <nav class="flex items-center text-label-sm text-slate-500 truncate">
+                <span class="hover:text-primary cursor-pointer transition-colors hidden sm:inline">Dashboard</span>
+                <span class="material-symbols-outlined text-[16px] mx-1 sm:mx-2 hidden sm:inline"
+                    data-icon="chevron_right">chevron_right</span>
+                <span class="text-slate-900 font-semibold truncate">Edit Bot</span>
+            </nav>
+        </div>
+        <div class="flex items-center gap-2 sm:gap-4 shrink-0">
+            <button
+                class="material-symbols-outlined p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors hidden sm:block"
+                data-icon="notifications">notifications</button>
+            <button
+                class="material-symbols-outlined p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors hidden sm:block"
+                data-icon="help">help</button>
+            <div class="h-8 w-[1px] bg-slate-200 mx-0 sm:mx-2 hidden sm:block"></div>
+
+            <button type="submit" form="bot-settings-form" id="save-changes"
+                class="px-4 py-2 sm:px-6 sm:py-2 text-sm sm:text-base bg-primary text-white font-label-md rounded-lg hover:shadow-lg hover:shadow-primary/20 active:opacity-90 transition-all whitespace-nowrap">
+                <span class="sm:hidden">Save</span>
+                <span class="hidden sm:inline">Save Changes</span>
+            </button>
+        </div>
+    </header>
+
     <form id="bot-settings-form" action="{{ route('bots.update', $bot->id) }}" method="POST">
         @csrf
     </form>
@@ -207,6 +238,8 @@
                 <p class="font-body-md text-on-surface-variant mt-xs">Fine-tune your assistant's identity,
                     behavior, and
                     personality.</p>
+
+
             </div>
             <div class="grid grid-cols-12 gap-lg">
                 <div class="col-span-12 lg:col-span-8 space-y-lg">

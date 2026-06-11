@@ -411,6 +411,70 @@
                     alert('Could not connect to the upload server.');
                 }
             }
+
+            async function loadSources() {
+    const tableBody = document.getElementById('sources-table-body');
+    const pathParts = window.location.pathname.split('/');
+    const botId = pathParts[2]; // Assuming /bots/{botId}/knowledge
+
+    try {
+        const response = await fetch(`http://127.0.0.1:8001/bots/${botId}/knowledge`);
+        const sources = await response.json();
+
+        tableBody.innerHTML = '';
+
+        sources.forEach(source => {
+            const row = `
+            <tr class="hover:bg-slate-50">
+                <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-slate-400">description</span>
+                        <div>
+                            <p class="font-medium text-slate-900">${source.name}</p>
+                            <p class="text-xs text-slate-500">${source.type}</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-6 py-4 text-sm text-slate-600">${source.size} MB</td>
+                <td class="px-6 py-4">
+                    <span class="px-2 py-1 bg-green-50 text-green-700 rounded text-xs font-medium">Ready</span>
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <button onclick="deleteSource('${botId}', '${source.id}')"
+                            class="text-slate-400 hover:text-red-600 transition-colors">
+                        <span class="material-symbols-outlined">delete</span>
+                    </button>
+                </td>
+            </tr>`;
+            tableBody.innerHTML += row;
+        });
+    } catch (error) {
+        console.error("Error loading sources:", error);
+    }
+}
+
+// Function to handle the deletion
+async function deleteSource(botId, sourceId) {
+    if (!confirm("Are you sure you want to delete this source?")) return;
+
+    try {
+        // NOTE: Ensure your friend provides this endpoint!
+        const response = await fetch(`http://127.0.0.1:8001/bots/${botId}/knowledge/${sourceId}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) throw new Error('Delete failed');
+
+        alert("Deleted successfully!");
+        loadSources(); // Refresh table
+    } catch (error) {
+        console.error("Delete Error:", error);
+        alert("Could not delete. Check if the endpoint exists.");`
+    }
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', loadSources);
         </script>
 </body>
 

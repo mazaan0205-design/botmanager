@@ -1,17 +1,10 @@
 <!DOCTYPE html>
-
 <html class="light" lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Material+Symbols+Outlined&display=swap" rel="stylesheet" />
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -130,7 +123,7 @@
                             "fontWeight": "600"
                         }]
                     }
-                },
+                }
             },
         }
     </script>
@@ -145,7 +138,6 @@
             white-space: nowrap;
             direction: ltr;
         }
-
         body {
             background-color: #F8FAFC;
         }
@@ -153,15 +145,12 @@
 </head>
 
 <body class="font-body-md text-on-background antialiased">
-    <!-- Mobile Sidebar Backdrop -->
     <div id="sidebar-backdrop" class="fixed inset-0 bg-slate-900/50 z-40 hidden lg:hidden transition-opacity"></div>
-    <!-- SideNavBar Anchor -->
-    <aside id="sidebar"
-        class="fixed left-0 top-0 h-screen w-[280px] border-r border-slate-200 bg-slate-50 flex flex-col p-4 z-50 transition-transform duration-300 -translate-x-full lg:translate-x-0">
+
+    <aside id="sidebar" class="fixed left-0 top-0 h-screen w-[280px] border-r border-slate-200 bg-slate-50 flex flex-col p-4 z-50 transition-transform duration-300 -translate-x-full lg:translate-x-0">
         <div class="flex items-center gap-3 px-4 py-6 mb-4">
             <div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
-                <span class="material-symbols-outlined text-on-primary-container"
-                    style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+                <span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
             </div>
             <div>
                 <h2 class="text-xl font-black text-indigo-600">BotManager</h2>
@@ -169,61 +158,38 @@
             </div>
         </div>
         <nav class="flex-1 flex flex-col gap-1">
-            <a href="{{ route('dashboard') }}"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg transition-all
-   {{ request()->routeIs('dashboard') ? 'text-indigo-600 bg-indigo-50 font-medium' : 'text-slate-600 hover:bg-slate-200/50' }}">
+            <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg transition-all {{ request()->routeIs('dashboard') ? 'text-indigo-600 bg-indigo-50 font-medium' : 'text-slate-600 hover:bg-slate-200/50' }}">
                 <span class="material-symbols-outlined">dashboard</span> Dashboard
             </a>
-
-            <a href="{{ route('bot-config', ['id' => $bot->id]) }}"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg transition-all
-   {{ request()->routeIs('bot-config') ? 'text-indigo-600 bg-indigo-50 font-medium' : 'text-slate-600 hover:bg-slate-200/50' }}">
+            <a href="{{ route('bot-config', ['id' => $bot->id ?? 'new']) }}" class="flex items-center gap-3 px-4 py-2 rounded-lg transition-all {{ request()->routeIs('bot-config') ? 'text-indigo-600 bg-indigo-50 font-medium' : 'text-slate-600 hover:bg-slate-200/50' }}">
                 <span class="material-symbols-outlined">settings</span> Configuration
             </a>
-
-            <a href="{{ route('knowledge', ['id' => $bot->id]) }}"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg transition-all
-   {{ request()->routeIs('knowledge') ? 'text-indigo-600 bg-indigo-50 font-medium' : 'text-slate-600 hover:bg-slate-200/50' }}">
+            <a href="{{ route('knowledge', ['id' => $bot->id ?? 'new']) }}" class="flex items-center gap-3 px-4 py-2 rounded-lg transition-all {{ request()->routeIs('knowledge') ? 'text-indigo-600 bg-indigo-50 font-medium' : 'text-slate-600 hover:bg-slate-200/50' }}">
                 <span class="material-symbols-outlined">database</span> Knowledge Base
             </a>
-
-            <a href="{{ route('preview', ['id' => $bot->id]) }}"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg transition-all
-   {{ request()->routeIs('preview') ? 'text-indigo-600 bg-indigo-50 font-medium' : 'text-slate-600 hover:bg-slate-200/50' }}">
+            <a href="{{ route('preview', ['id' => $bot->id ?? 'new']) }}" class="flex items-center gap-3 px-4 py-2 rounded-lg transition-all {{ request()->routeIs('preview') ? 'text-indigo-600 bg-indigo-50 font-medium' : 'text-slate-600 hover:bg-slate-200/50' }}">
                 <span class="material-symbols-outlined">chat_bubble</span> Test Preview
             </a>
         </nav>
-        <a href="{{ route('bot-config', ['id' => 'new']) }}"
-            class="w-full mb-4 py-3 px-4 bg-indigo-600 text-white rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-indigo-700 transition-all">
-            <span class="material-symbols-outlined text-sm">add</span>
-            Create New Bot
+        <a href="{{ route('bot-config', ['id' => 'new']) }}" class="w-full mb-4 py-3 px-4 bg-indigo-600 text-white rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-indigo-700 transition-all">
+            <span class="material-symbols-outlined text-sm">add</span> Create New Bot
         </a>
-        <a class="flex items-center gap-3 px-4 py-2 text-slate-600 hover:bg-slate-200/50 rounded-lg transition-all font-medium"
-            href="#">
-            <span class="material-symbols-outlined">menu_book</span>
-            <span class="font-label-md">Documentation</span>
+        <a class="flex items-center gap-3 px-4 py-2 text-slate-600 hover:bg-slate-200/50 rounded-lg transition-all font-medium" href="#">
+            <span class="material-symbols-outlined">menu_book</span> <span class="font-label-md">Documentation</span>
         </a>
-        <a class="flex items-center gap-3 px-4 py-2 text-slate-600 hover:bg-slate-200/50 rounded-lg transition-all font-medium"
-            href="#">
-            <span class="material-symbols-outlined">person</span>
-            <span class="font-label-md">Account</span>
+        <a class="flex items-center gap-3 px-4 py-2 text-slate-600 hover:bg-slate-200/50 rounded-lg transition-all font-medium" href="#">
+            <span class="material-symbols-outlined">person</span> <span class="font-label-md">Account</span>
         </a>
-        </div>
     </aside>
-    <!-- TopNavBar Anchor -->
-    <header
-        class="fixed top-0 right-0 left-0 lg:ml-[280px] h-16 bg-white border-b border-slate-200 flex justify-between items-center px-4 sm:px-6 z-30 shadow-sm transition-all duration-300">
+
+    <header class="fixed top-0 right-0 left-0 lg:ml-[280px] h-16 bg-white border-b border-slate-200 flex justify-between items-center px-4 sm:px-6 z-30 shadow-sm transition-all duration-300">
         <div class="flex items-center flex-1">
-            <button id="mobile-menu-btn"
-                class="p-2 mr-2 -ml-2 text-slate-500 hover:bg-slate-50 rounded-lg lg:hidden transition-colors">
+            <button id="mobile-menu-btn" class="p-2 mr-2 -ml-2 text-slate-500 hover:bg-slate-50 rounded-lg lg:hidden transition-colors">
                 <span class="material-symbols-outlined">menu</span>
             </button>
             <div class="relative w-full max-w-[130px] sm:max-w-md">
-                <span
-                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
-                <input
-                    class="w-full pl-10 pr-4 py-2 bg-slate-50 border-none rounded-lg focus:ring-2 focus:ring-indigo-500 text-sm"
-                    placeholder="Search chatbots..." type="text" />
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+                <input class="w-full pl-10 pr-4 py-2 bg-slate-50 border-none rounded-lg focus:ring-2 focus:ring-indigo-500 text-sm" placeholder="Search chatbots..." type="text" />
             </div>
         </div>
         <div class="flex items-center gap-2 sm:gap-4">
@@ -238,261 +204,76 @@
                 <span class="material-symbols-outlined">help</span>
             </button>
             <div class="h-8 w-[1px] bg-slate-200 mx-2"></div>
-            <img alt="User profile avatar" class="w-8 h-8 rounded-full border border-slate-200"
-                data-alt="Close up portrait of a professional male software engineer in a modern office with soft natural lighting"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnU_jKs9zLGqPyg_PZFk17MZwvSmn8fVsLhp_jXO6xqix6xuzhtDdcEsAR35dmrfeyJXu-xZ5LaoAq9AWYTKIm-wy5Xgsd_GLSQqh0e3Zw9UNk2X0UXXBIiUgp0UvlyUzQXH_Gf6Sedp5EPG0OMYav96PUyzjHstBuKlZShdLKBk2tpLmWS_tglX9nyx2LnjAm_AodgIrxQKJYEww7j8NdIgcbQRRB1PCX1WppqeJbw_8lI-FTuYomOQoo6NbYgUAyEijyu6y1bN8" />
+            <img alt="User profile avatar" class="w-8 h-8 rounded-full border border-slate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnU_jKs9zLGqPyg_PZFk17MZwvSmn8fVsLhp_jXO6xqix6xuzhtDdcEsAR35dmrfeyJXu-xZ5LaoAq9AWYTKIm-wy5Xgsd_GLSQqh0e3Zw9UNk2X0UXXBIiUgp0UvlyUzQXH_Gf6Sedp5EPG0OMYav96PUyzjHstBuKlZShdLKBk2tpLmWS_tglX9nyx2LnjAm_AodgIrxQKJYEww7j8NdIgcbQRRB1PCX1WppqeJbw_8lI-FTuYomOQoo6NbYgUAyEijyu6y1bN8" />
         </div>
     </header>
-    <!-- Main Content Area -->
+
     <main class="lg:ml-[280px] pt-16 min-h-screen transition-all duration-300">
         <div class="p-4 md:p-[40px]">
-            <!-- Page Header -->
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-xl">
                 <div>
                     <h1 class="font-h1 text-h1 text-slate-900">My Chatbots</h1>
-                    <p class="text-on-surface-variant font-body-md mt-1">Manage and monitor your
-                        intelligent automation agents.</p>
+                    <p class="text-on-surface-variant font-body-md mt-1">Manage and monitor your intelligent automation agents.</p>
                 </div>
                 <div class="flex gap-sm">
-                    <button
-                        class="px-4 py-2 border border-slate-200 rounded-lg font-label-md text-secondary hover:bg-slate-50 transition-colors flex items-center gap-2">
-                        <span class="material-symbols-outlined text-lg">filter_list</span>
-                        Filter
+                    <button class="px-4 py-2 border border-slate-200 rounded-lg font-label-md text-secondary hover:bg-slate-50 transition-colors flex items-center gap-2">
+                        <span class="material-symbols-outlined text-lg">filter_list</span> Filter
                     </button>
-                    <a href="{{ route('bot-config', ['id' => 'new']) }}"
-                        class="w-full mb-4 py-3 px-4 bg-indigo-600 text-white rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-indigo-700 transition-all">
-                        <span class="material-symbols-outlined text-sm">add</span>
-                        Create New Bot
+                    <a href="{{ route('bot-config', ['id' => 'new']) }}" class="py-2.5 px-4 bg-indigo-600 text-white rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-indigo-700 transition-all shadow-sm">
+                        <span class="material-symbols-outlined text-sm">add</span> Create New Bot
                     </a>
                 </div>
             </div>
 
-            <!-- Chatbot Cards Grid -->
-            <div class="border border-3 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-gutter">
-                <!-- Card 1: Online -->
-                <div
-                    class="bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow group">
-                    <div class="p-lg">
-                        <div class="flex justify-between items-start mb-md">
-                            <div class="flex items-center gap-3">
-                                <div class="relative">
-                                    <div
-                                        class="w-12 h-12 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
-                                        <span class="material-symbols-outlined text-2xl"
-                                            style="font-variation-settings: 'FILL' 1;">support_agent</span>
-                                    </div>
-                                    <span
-                                        class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></span>
-                                </div>
-                                <div>
-                                    <h3 class="font-h3 text-[18px] text-slate-900">
-                                        Customer Support</h3>
-                                    <span class="text-green-600 font-label-sm flex items-center gap-1">
-                                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                                        Online
-                                    </span>
-                                </div>
-                            </div>
-                            <button class="p-2 text-slate-400 hover:text-slate-600">
-                                <span class="material-symbols-outlined">more_vert</span>
-                            </button>
-                        </div>
-                        <p class="text-slate-600 font-body-sm line-clamp-2 mb-lg">Handles
-                            primary tier-1 support queries, order tracking, and general FAQ
-                            responses.</p>
-                        <div class="flex items-center justify-between pt-md border-t border-slate-50">
+            <div id="bots-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @forelse($bots as $bot)
+                    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow relative">
 
-                            <div class="flex gap-2">
-                                <a href="{{ route('preview', ['id' => $bot->id]) }}"
-                                    class="px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg font-label-sm hover:bg-slate-200 transition-colors flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-base">play_arrow</span>
-                                    Test
-                                </a>
+                        <button type="button"
+                                onclick="openEmbedModal('{{ $bot->bot_id ?? $bot->id }}')"
+                                class="absolute top-4 right-4 text-indigo-600 hover:text-indigo-800 bg-slate-50 hover:bg-indigo-50 border border-slate-200 font-mono font-bold text-xs w-8 h-8 rounded-lg flex items-center justify-center shadow-sm transition-all z-20"
+                                title="Get Embed Snippet">
+                            &lt;/&gt;
+                        </button>
 
-                                <a href="{{ route('bot-config', ['id' => $bot->id]) }}"
-                                    class="px-3 py-1.5 border border-slate-200 text-slate-700 rounded-lg font-label-sm hover:bg-slate-50 transition-colors flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-base">edit</span>
-                                    Edit
-                                </a>
-                                <a href="{{ route('knowledge', ['id' => $bot->id]) }}"
-                                    class="px-3 py-1.5 border border-slate-200 text-slate-700 rounded-lg font-label-sm hover:bg-slate-50 transition-colors flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-base">book</span>
-                                    KB
-                                </a>
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-indigo-600">smart_toy</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-900">{{ $bot->name ?? 'Unnamed Bot' }}</h3>
+                                    <div class="flex items-center gap-1.5 text-xs text-slate-500">
+                                        <span class="w-2 h-2 rounded-full {{ ($bot->status ?? 'offline') == 'online' ? 'bg-green-500' : 'bg-slate-400' }}"></span>
+                                        {{ ucfirst($bot->status ?? 'offline') }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                            </div>
+                        <p class="text-slate-600 text-sm mb-6 line-clamp-2 pr-6">
+                            {{ $bot->description ?? 'No description provided.' }}
+                        </p>
+
+                        <div class="flex gap-2">
+                            <a href="{{ route('preview', $bot->id) }}" class="flex-1 flex items-center justify-center gap-2 py-2 bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-lg text-sm font-medium transition-colors">
+                                <span class="material-symbols-outlined text-base">play_arrow</span> Test
+                            </a>
+                            <a href="{{ route('bot-config', $bot->id) }}" class="flex-1 flex items-center justify-center gap-2 py-2 bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-lg text-sm font-medium transition-colors">
+                                <span class="material-symbols-outlined text-base">edit</span> Edit
+                            </a>
+                            <a href="{{ route('knowledge', $bot->id) }}" class="px-3 py-2 bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
+                                <span class="material-symbols-outlined text-base">menu_book</span> KB
+                            </a>
                         </div>
                     </div>
-                </div>
-                <!-- Card 2: Sales Assistant -->
-                <div
-                    class="bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow group">
-                    <div class="p-lg">
-                        <div class="flex justify-between items-start mb-md">
-                            <div class="flex items-center gap-3">
-                                <div class="relative">
-                                    <div
-                                        class="w-12 h-12 rounded-lg bg-orange-50 flex items-center justify-center text-orange-600">
-                                        <span class="material-symbols-outlined text-2xl"
-                                            style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
-                                    </div>
-                                    <span
-                                        class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></span>
-                                </div>
-                                <div>
-                                    <h3 class="font-h3 text-[18px] text-slate-900">
-                                        Sales Assistant</h3>
-                                    <span class="text-green-600 font-label-sm flex items-center gap-1">
-                                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                                        Online
-                                    </span>
-                                </div>
-                            </div>
-                            <button class="p-2 text-slate-400 hover:text-slate-600">
-                                <span class="material-symbols-outlined">more_vert</span>
-                            </button>
-                        </div>
-                        <p class="text-slate-600 font-body-sm line-clamp-2 mb-lg">Focuses on
-                            product recommendations, lead qualification, and booking sales
-                            calls.</p>
-                        <div class="flex items-center justify-between pt-md border-t border-slate-50">
-                            <div class="flex flex-col">
-                                <span class="text-slate-400 font-label-sm">Last
-                                    Updated</span>
-                                <span class="text-slate-700 font-label-md">1 day
-                                    ago</span>
-                            </div>
-                            <div class="flex gap-2">
-                                <button
-                                    class="px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg font-label-sm hover:bg-slate-200 transition-colors flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-base">play_arrow</span>
-                                    Test
-                                </button>
-                                <button
-                                    class="px-3 py-1.5 border border-slate-200 text-slate-700 rounded-lg font-label-sm hover:bg-slate-50 transition-colors flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-base">edit</span>
-                                    Edit
-                                </button>
-                            </div>
-                        </div>
+                @empty
+                    <div class="col-span-full py-12 text-center border-2 border-dashed border-slate-200 rounded-xl text-slate-400">
+                        <p>No bots found. Click "Create New Bot" to start.</p>
                     </div>
-                </div>
-                <!-- Card 3: Offline -->
-                <div
-                    class="bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow group opacity-75">
-                    <div class="p-lg">
-                        <div class="flex justify-between items-start mb-md">
-                            <div class="flex items-center gap-3">
-                                <div class="relative">
-                                    <div
-                                        class="w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400">
-                                        <span class="material-symbols-outlined text-2xl"
-                                            style="font-variation-settings: 'FILL' 1;">science</span>
-                                    </div>
-                                    <span
-                                        class="absolute -bottom-1 -right-1 w-4 h-4 bg-slate-400 border-2 border-white rounded-full"></span>
-                                </div>
-                                <div>
-                                    <h3 class="font-h3 text-[18px] text-slate-900">
-                                        Research Bot</h3>
-                                    <span class="text-slate-500 font-label-sm flex items-center gap-1">
-                                        <span class="w-1.5 h-1.5 bg-slate-400 rounded-full"></span>
-                                        Offline
-                                    </span>
-                                </div>
-                            </div>
-                            <button class="p-2 text-slate-400 hover:text-slate-600">
-                                <span class="material-symbols-outlined">more_vert</span>
-                            </button>
-                        </div>
-                        <p class="text-slate-600 font-body-sm line-clamp-2 mb-lg">Internal
-                            experimental agent for scanning documentation and summarizing
-                            research papers.</p>
-                        <div class="flex items-center justify-between pt-md border-t border-slate-50">
-                            <div class="flex flex-col">
-                                <span class="text-slate-400 font-label-sm">Last
-                                    Updated</span>
-                                <span class="text-slate-700 font-label-md">3 days
-                                    ago</span>
-                            </div>
-                            <div class="flex gap-2">
-                                <button
-                                    class="px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg font-label-sm hover:bg-slate-200 transition-colors flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-base">play_arrow</span>
-                                    Test
-                                </button>
-                                <button
-                                    class="px-3 py-1.5 border border-slate-200 text-slate-700 rounded-lg font-label-sm hover:bg-slate-50 transition-colors flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-base">edit</span>
-                                    Edit
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 4: IT Desk -->
-                <div
-                    class="bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow group">
-                    <div class="p-lg">
-                        <div class="flex justify-between items-start mb-md">
-                            <div class="flex items-center gap-3">
-                                <div class="relative">
-                                    <div
-                                        class="w-12 h-12 rounded-lg bg-purple-50 flex items-center justify-center text-purple-600">
-                                        <span class="material-symbols-outlined text-2xl"
-                                            style="font-variation-settings: 'FILL' 1;">terminal</span>
-                                    </div>
-                                    <span
-                                        class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></span>
-                                </div>
-                                <div>
-                                    <h3 class="font-h3 text-[18px] text-slate-900">
-                                        IT Helpdesk</h3>
-                                    <span class="text-green-600 font-label-sm flex items-center gap-1">
-                                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                                        Online
-                                    </span>
-                                </div>
-                            </div>
-                            <button class="p-2 text-slate-400 hover:text-slate-600">
-                                <span class="material-symbols-outlined">more_vert</span>
-                            </button>
-                        </div>
-                        <p class="text-slate-600 font-body-sm line-clamp-2 mb-lg">Password
-                            resets, VPN troubleshooting, and software access requests.</p>
-                        <div class="flex items-center justify-between pt-md border-t border-slate-50">
-                            <div class="flex flex-col">
-                                <span class="text-slate-400 font-label-sm">Last
-                                    Updated</span>
-                                <span class="text-slate-700 font-label-md">1 hour
-                                    ago</span>
-                            </div>
-                            <div class="flex gap-2">
-                                <button
-                                    class="px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg font-label-sm hover:bg-slate-200 transition-colors flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-base">play_arrow</span>
-                                    Test
-                                </button>
-                                <button
-                                    class="px-3 py-1.5 border border-slate-200 text-slate-700 rounded-lg font-label-sm hover:bg-slate-50 transition-colors flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-base">edit</span>
-                                    Edit
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 5: Empty/New -->
-                <div
-                    class="border-2 border-dashed border-slate-200 rounded-xl flex flex-col items-center justify-center p-lg min-h-[220px] hover:bg-slate-50 transition-colors cursor-pointer group">
-                    <div
-                        class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-2xl">add</span>
-                    </div>
-                    <span class="mt-4 font-label-md text-slate-600">Create New Bot</span>
-                </div>
+                @endforelse
             </div>
-            <!-- Recent Activity Table -->
+
             <div class="mt-xl bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
                 <div class="px-lg py-md border-b border-slate-100 flex justify-between items-center">
                     <h3 class="font-h3 text-[18px] text-slate-900">Global Activity Log</h3>
@@ -502,59 +283,40 @@
                     <table class="w-full text-left min-w-[600px]">
                         <thead class="bg-slate-50">
                             <tr>
-                                <th class="px-lg py-3 text-[12px] font-bold text-slate-500 uppercase tracking-wider">
-                                    Event</th>
-                                <th class="px-lg py-3 text-[12px] font-bold text-slate-500 uppercase tracking-wider">
-                                    Bot Source</th>
-                                <th class="px-lg py-3 text-[12px] font-bold text-slate-500 uppercase tracking-wider">
-                                    User ID</th>
-                                <th class="px-lg py-3 text-[12px] font-bold text-slate-500 uppercase tracking-wider">
-                                    Status</th>
-                                <th
-                                    class="px-lg py-3 text-[12px] font-bold text-slate-500 uppercase tracking-wider text-right">
-                                    Timestamp</th>
+                                <th class="px-lg py-3 text-[12px] font-bold text-slate-500 uppercase tracking-wider">Event</th>
+                                <th class="px-lg py-3 text-[12px] font-bold text-slate-500 uppercase tracking-wider">Bot Source</th>
+                                <th class="px-lg py-3 text-[12px] font-bold text-slate-500 uppercase tracking-wider">User ID</th>
+                                <th class="px-lg py-3 text-[12px] font-bold text-slate-500 uppercase tracking-wider">Status</th>
+                                <th class="px-lg py-3 text-[12px] font-bold text-slate-500 uppercase tracking-wider text-right">Timestamp</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100">
                             <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="px-lg py-4 font-body-sm text-slate-900">New lead
-                                    captured</td>
-                                <td class="px-lg py-4 font-body-sm text-slate-600">Sales
-                                    Assistant</td>
+                                <td class="px-lg py-4 font-body-sm text-slate-900">New lead captured</td>
+                                <td class="px-lg py-4 font-body-sm text-slate-600">Sales Assistant</td>
                                 <td class="px-lg py-4 font-body-sm text-slate-600">#US-9281</td>
                                 <td class="px-lg py-4">
-                                    <span
-                                        class="px-2 py-0.5 bg-green-50 text-green-700 text-xs font-medium rounded">Success</span>
+                                    <span class="px-2 py-0.5 bg-green-50 text-green-700 text-xs font-medium rounded">Success</span>
                                 </td>
-                                <td class="px-lg py-4 font-body-sm text-slate-400 text-right">2m
-                                    ago</td>
+                                <td class="px-lg py-4 font-body-sm text-slate-400 text-right">2m ago</td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="px-lg py-4 font-body-sm text-slate-900">Documentation
-                                    query</td>
-                                <td class="px-lg py-4 font-body-sm text-slate-600">Customer
-                                    Support</td>
+                                <td class="px-lg py-4 font-body-sm text-slate-900">Documentation query</td>
+                                <td class="px-lg py-4 font-body-sm text-slate-600">Customer Support</td>
                                 <td class="px-lg py-4 font-body-sm text-slate-600">#ANON-04</td>
                                 <td class="px-lg py-4">
-                                    <span
-                                        class="px-2 py-0.5 bg-indigo-50 text-indigo-700 text-xs font-medium rounded">Handled</span>
+                                    <span class="px-2 py-0.5 bg-indigo-50 text-indigo-700 text-xs font-medium rounded">Handled</span>
                                 </td>
-                                <td class="px-lg py-4 font-body-sm text-slate-400 text-right">
-                                    14m ago</td>
+                                <td class="px-lg py-4 font-body-sm text-slate-400 text-right">14m ago</td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="px-lg py-4 font-body-sm text-slate-900">Critical
-                                    Error: API Timeout</td>
-                                <td class="px-lg py-4 font-body-sm text-slate-600">IT Helpdesk
-                                </td>
-                                <td class="px-lg py-4 font-body-sm text-slate-600">#ADMIN-01
-                                </td>
+                                <td class="px-lg py-4 font-body-sm text-slate-900">Critical Error: API Timeout</td>
+                                <td class="px-lg py-4 font-body-sm text-slate-600">IT Helpdesk</td>
+                                <td class="px-lg py-4 font-body-sm text-slate-600">#ADMIN-01</td>
                                 <td class="px-lg py-4">
-                                    <span
-                                        class="px-2 py-0.5 bg-error-container text-error text-xs font-medium rounded">Failed</span>
+                                    <span class="px-2 py-0.5 bg-error-container text-error text-xs font-medium rounded">Failed</span>
                                 </td>
-                                <td class="px-lg py-4 font-body-sm text-slate-400 text-right">1h
-                                    ago</td>
+                                <td class="px-lg py-4 font-body-sm text-slate-400 text-right">1h ago</td>
                             </tr>
                         </tbody>
                     </table>
@@ -562,46 +324,67 @@
             </div>
         </div>
     </main>
-    <!-- Contextual FAB (Only for main landing/dashboards) -->
-    <button
-        class="fixed bottom-base right-base w-14 h-14 bg-primary text-on-primary rounded-full shadow-xl flex items-center justify-center hover:scale-105 transition-transform z-50">
+
+    <button class="fixed bottom-base right-base w-14 h-14 bg-primary text-on-primary rounded-full shadow-xl flex items-center justify-center hover:scale-105 transition-transform z-50">
         <span class="material-symbols-outlined text-2xl">chat</span>
     </button>
 
+    <div id="embed-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+        <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-md border border-slate-100">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-slate-800">Embed Code</h3>
+                <button onclick="closeEmbedModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold transition-colors">✕</button>
+            </div>
+            <p class="text-sm text-slate-600 mb-2">Copy this script snippet to embed your bot widget window:</p>
+            <div class="relative mb-4">
+                <code id="embed-code-box" class="block bg-slate-900 text-indigo-300 p-4 rounded-lg text-xs overflow-x-auto border border-slate-800 font-mono whitespace-pre text-left shadow-inner select-all"></code>
+            </div>
+            <button id="copy-btn" onclick="copySnippet()" class="w-full py-2.5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors shadow-sm">
+                Copy Code
+            </button>
+        </div>
+    </div>
+
     <script>
+        /**
+         * Dynamic Configuration Embed Script Generator
+         */
         function openEmbedModal(botId) {
             const modal = document.getElementById('embed-modal');
-            const textarea = document.getElementById('modal-snippet');
+            const codeBox = document.getElementById('embed-code-box');
 
-            // This injects your exact requested structure with the dynamic botId
-            textarea.value = `<script>
-                                              window.BotManagerConfig = {
-                                                botId: "${botId}",
-                                                backendUrl: "http://127.0.0.1:8001"
-                                              };
-                                            <script src="http://127.0.0.1:8001/static/widget.js" async>
-    </script>`;
+            const sOpen = '<script>';
+            const sClose = '</' + 'script>';
 
-    modal.classList.remove('hidden');
-    }
+            const configurationSnippet =
+`${sOpen}
+  window.BotManagerConfig = {
+    botId: "${botId}",
+    apiUrl: "http://127.0.0.1:8001"
+  };
+${sClose}
+${sOpen} src="http://127.0.0.1:8001/embed/widget.js" defer>${sClose}`;
 
-    function closeEmbedModal() {
-    document.getElementById('embed-modal').classList.add('hidden');
-    }
+            codeBox.innerText = configurationSnippet;
+            modal.classList.remove('hidden');
+        }
 
-    function copySnippet() {
-    const area = document.getElementById("modal-snippet");
-    // Ensure the textarea is visible/focused before selecting
-    area.select();
-    document.execCommand("copy");
+        function closeEmbedModal() {
+            document.getElementById('embed-modal').classList.add('hidden');
+        }
 
-    // Visual feedback
-    const btn = document.querySelector('button[onclick="copySnippet()"]');
-    const originalText = btn.innerText;
-    btn.innerText = "Copied!";
-    setTimeout(() => btn.innerText = originalText, 2000);
-    }
+        function copySnippet() {
+            const codeBox = document.getElementById('embed-code-box');
+            const btn = document.getElementById('copy-btn');
+
+            navigator.clipboard.writeText(codeBox.innerText).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = "Copied!";
+                setTimeout(() => { btn.innerText = originalText; }, 2000);
+            }).catch(err => {
+                console.error("Failed copy fallback execution:", err);
+            });
+        }
     </script>
 </body>
-
 </html>
