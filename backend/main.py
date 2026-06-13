@@ -8,8 +8,22 @@ from pydantic import BaseModel, ConfigDict
 from typing import List, Dict, Any, Optional
 import database
 import ai_service
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.requests import Request
 
 app = FastAPI(title="Bot Manager Backend")
+
+class NoCacheMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        response = await call_next(request)
+        if request.url.path.endswith('.js'):
+            response.headers['Cache-Control'] = 'no-store'
+        return response
+
+app.add_middleware(NoCacheMiddleware)
+
 
 # Enable CORS for internal Laravel and external client website widgets
 app.add_middleware(
