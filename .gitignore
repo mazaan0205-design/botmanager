@@ -1,1 +1,5 @@
-backend/__pycache__
+# Ignore Python cache directories and files
+backend/__pycache__/
+*.pyc
+*.pyo
+*.pyd
